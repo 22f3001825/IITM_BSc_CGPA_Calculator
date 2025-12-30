@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IIT Madras BS CGPA Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .cgpa-display {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .formula-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .formula-title {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            color: #333;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .formula-note {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .formula-note strong {
+            color: #764ba2;
+        }
+
+        .cgpa-value {
+            font-size: 4em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        .credits-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .credit-item {
+            background: #f8f9fa;
+            padding: 15px 25px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .credit-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .credit-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #764ba2;
+        }
+
+        .level-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 20px;
+            background: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .level-content {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .level-content.active {
+            display: block;
+        }
+
+        .course-item {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .course-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .course-info {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .course-name {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .course-code {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .course-credits {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .grade-select {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            min-width: 100px;
+        }
+
+        .grade-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #667eea;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .cgpa-value {
+                font-size: 3em;
+            }
+
+            .course-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .level-tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>IIT Madras BS CGPA Calculator</h1>
+            <p>Data Science and Applications</p>
+        </div>
+
+        <div class="cgpa-display">
+            <div class="credit-label">Your CGPA</div>
+            <div class="cgpa-value" id="cgpaValue">0.00</div>
+            <div class="credits-info">
+                <div class="credit-item">
+                    <div class="credit-label">Total Credits</div>
+                    <div class="credit-value" id="totalCredits">0</div>
+                </div>
+                <div class="credit-item">
+                    <div class="credit-label">Completed</div>
+                    <div class="credit-value" id="completedCredits">0</div>
+                </div>
+                <div class="credit-item">
+                    <div class="credit-label">Grade Points</div>
+                    <div class="credit-value" id="gradePoints">0</div>
+                </div>
+                <div class="credit-item">
+                    <div class="credit-label">Percentage</div>
+                    <div class="credit-value" id="percentage">0%</div>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <div class="formula-title">📐 CGPA Calculation Formula</div>
+                <div class="formula">CGPA = Σ(Cᵢ × GP) / ΣCᵢ</div>
+                <div class="formula-note">
+                    <strong>Where:</strong><br>
+                    • Cᵢ = Credit of the course<br>
+                    • GP = Grade Point for that course<br>
+                    • Σ = Sum over all registered courses successfully cleared (S to E only)<br>
+                    • <strong>Note:</strong> Grades P, F, U, W, I are NOT included in CGPA calculation<br>
+                    • <strong>Percentage = CGPA × 10</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="level-tabs">
+            <button class="tab active" onclick="switchTab('foundation')">Foundation (32)</button>
+            <button class="tab" onclick="switchTab('diploma-prog')">Diploma - Programming (27)</button>
+            <button class="tab" onclick="switchTab('diploma-ds')">Diploma - Data Science (27)</button>
+            <button class="tab" onclick="switchTab('degree')">Degree Level (28)</button>
+        </div>
+
+        <div id="foundation" class="level-content active">
+            <div class="section-title">Foundation Level - 32 Credits</div>
+        </div>
+
+        <div id="diploma-prog" class="level-content">
+            <div class="section-title">Diploma in Programming - 27 Credits</div>
+        </div>
+
+        <div id="diploma-ds" class="level-content">
+            <div class="section-title">Diploma in Data Science - 27 Credits</div>
+        </div>
+
+        <div id="degree" class="level-content">
+            <div class="section-title">Degree Level - Core & Elective Courses</div>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-primary" onclick="calculateCGPA()">Calculate CGPA</button>
+            <button class="btn btn-secondary" onclick="resetAll()">Reset All</button>
+        </div>
+    </div>
+
+    <script>
+        const courses = {
+            foundation: [
+                { name: "Mathematics for Data Science I", code: "BSMA1001", credits: 4 },
+                { name: "Statistics for Data Science I", code: "BSMA1002", credits: 4 },
+                { name: "Computational Thinking", code: "BSCS1001", credits: 4 },
+                { name: "English I", code: "BSHS1001", credits: 4 },
+                { name: "Mathematics for Data Science II", code: "BSMA1003", credits: 4 },
+                { name: "Statistics for Data Science II", code: "BSMA1004", credits: 4 },
+                { name: "Programming in Python", code: "BSCS1002", credits: 4 },
+                { name: "English II", code: "BSHS1002", credits: 4 }
+            ],
+            "diploma-prog": [
+                { name: "Database Management Systems", code: "BSCS2001", credits: 4 },
+                { name: "Programming, Data Structures and Algorithms using Python", code: "BSCS2002", credits: 4 },
+                { name: "Modern Application Development I", code: "BSCS2003", credits: 4 },
+                { name: "Modern Application Development I - Project", code: "BSCS2003P", credits: 2 },
+                { name: "Programming Concepts using Java", code: "BSCS2005", credits: 4 },
+                { name: "Modern Application Development II", code: "BSCS2006", credits: 4 },
+                { name: "Modern Application Development II - Project", code: "BSCS2006P", credits: 2 },
+                { name: "System Commands", code: "BSSE2001", credits: 3 }
+            ],
+            "diploma-ds": [
+                { name: "Machine Learning Foundations", code: "BSCS2004", credits: 4 },
+                { name: "Business Data Management", code: "BSMS2001", credits: 4 },
+                { name: "Machine Learning Techniques", code: "BSCS2007", credits: 4 },
+                { name: "Machine Learning Practice", code: "BSCS2008", credits: 4 },
+                { name: "Machine Learning Practice - Project", code: "BSCS2008P", credits: 2 },
+                { name: "Tools in Data Science", code: "BSSE2002", credits: 3 },
+                { name: "Business Data Management - Project (Option 1)", code: "BSMS2001P", credits: 2 },
+                { name: "Business Analytics (Option 1)", code: "BSMS2002", credits: 4 },
+                { name: "Introduction to Deep Learning and Generative AI (Option 2)", code: "BSDA2001", credits: 4 },
+                { name: "Deep Learning and Generative AI - Project (Option 2)", code: "BSDA2001P", credits: 2 }
+            ],
+            degree: [
+                { name: "Software Engineering (Core)", code: "BSCS3001", credits: 4 },
+                { name: "Software Testing (Core)", code: "BSCS3002", credits: 4 },
+                { name: "AI: Search Methods for Problem Solving (Core)", code: "BSCS3003", credits: 4 },
+                { name: "Deep Learning (Core)", code: "BSCS3004", credits: 4 },
+                { name: "Strategies for Professional Growth (Mandatory)", code: "BSGN3001", credits: 4 },
+                { name: "Elective 1", code: "ELEC1", credits: 4 },
+                { name: "Elective 2", code: "ELEC2", credits: 4 }
+            ]
+        };
+
+        const gradePoints = {
+            "S": 10, "A": 9, "B": 8, "C": 7, "D": 6, "E": 4, "U": 0, "P": 0, "F": 0, "W": 0, "I": 0, "": 0
+        };
+
+        // Grades that should NOT be included in CGPA calculation
+        const excludeFromCGPA = ["P", "F", "U", "W", "I"];
+
+        function initializeCourses() {
+            Object.keys(courses).forEach(level => {
+                const container = document.getElementById(level);
+                const contentDiv = container.querySelector('.section-title').parentElement;
+                
+                courses[level].forEach((course, index) => {
+                    const courseDiv = document.createElement('div');
+                    courseDiv.className = 'course-item';
+                    courseDiv.innerHTML = `
+                        <div class="course-info">
+                            <div class="course-name">${course.name}</div>
+                            <div class="course-code">${course.code}</div>
+                        </div>
+                        <div class="course-credits">${course.credits} Credits</div>
+                        <select class="grade-select" id="${level}-${index}">
+                            <option value="">Select Grade</option>
+                            <option value="S">S (10)</option>
+                            <option value="A">A (9)</option>
+                            <option value="B">B (8)</option>
+                            <option value="C">C (7)</option>
+                            <option value="D">D (6)</option>
+                            <option value="E">E (4)</option>
+                            <option value="U">U (0)</option>
+                            <option value="P">P - Pass</option>
+                            <option value="F">F - Fail</option>
+                            <option value="W">W - Withdrawn</option>
+                            <option value="I">I - Incomplete</option>
+                        </select>
+                    `;
+                    contentDiv.appendChild(courseDiv);
+                });
+            });
+        }
+
+        function switchTab(levelId) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.level-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(levelId).classList.add('active');
+        }
+
+        function calculateCGPA() {
+            let totalCredits = 0;
+            let totalGradePoints = 0;
+            let completedCredits = 0;
+
+            Object.keys(courses).forEach(level => {
+                courses[level].forEach((course, index) => {
+                    const select = document.getElementById(`${level}-${index}`);
+                    const grade = select.value;
+                    
+                    // Only count grades S to E for CGPA calculation (excluding P, F, U, W, I)
+                    if (grade && !excludeFromCGPA.includes(grade)) {
+                        completedCredits += course.credits;
+                        totalGradePoints += gradePoints[grade] * course.credits;
+                    }
+                    
+                    // Count all selected grades for total credits
+                    if (grade) {
+                        totalCredits += course.credits;
+                    }
+                });
+            });
+
+            const cgpa = completedCredits > 0 ? (totalGradePoints / completedCredits).toFixed(2) : 0;
+            const percentage = (cgpa * 10).toFixed(1);
+
+            document.getElementById('cgpaValue').textContent = cgpa;
+            document.getElementById('totalCredits').textContent = totalCredits;
+            document.getElementById('completedCredits').textContent = completedCredits;
+            document.getElementById('gradePoints').textContent = totalGradePoints;
+            document.getElementById('percentage').textContent = percentage + '%';
+        }
+
+        function resetAll() {
+            if (confirm('Are you sure you want to reset all grades?')) {
+                document.querySelectorAll('.grade-select').forEach(select => {
+                    select.value = '';
+                });
+                calculateCGPA();
+            }
+        }
+
+        initializeCourses();
+    </script>
+</body>
+</html>
