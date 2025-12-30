@@ -12,213 +12,285 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 40px 20px;
             color: #333;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .header {
             text-align: center;
             color: white;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-size: 2.8em;
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         .header p {
-            font-size: 1.1em;
-            opacity: 0.95;
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 300;
         }
 
-        .cgpa-display {
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .cgpa-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .overall-cgpa-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            color: white;
+        }
+
+        .overall-label {
+            font-size: 0.95em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .overall-value {
+            font-size: 5em;
+            font-weight: 700;
+            margin: 15px 0;
+            line-height: 1;
+        }
+
+        .overall-percentage {
+            font-size: 1.8em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .level-cgpa-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .level-cgpa-card {
             background: white;
             border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            text-align: center;
+            padding: 20px 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .level-cgpa-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+
+        .level-cgpa-info h3 {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .level-cgpa-credits {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .level-cgpa-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-area {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
         .formula-box {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            text-align: left;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 12px;
         }
 
         .formula-title {
-            font-weight: 600;
+            font-weight: 700;
             color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .formula {
             font-family: 'Courier New', monospace;
-            font-size: 1.2em;
+            font-size: 1.4em;
             color: #333;
             margin: 15px 0;
-            padding: 15px;
+            padding: 20px;
             background: white;
-            border-radius: 5px;
+            border-radius: 8px;
             text-align: center;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .formula-note {
             font-size: 0.9em;
-            color: #666;
-            margin-top: 10px;
-            line-height: 1.6;
+            color: #555;
+            line-height: 1.8;
+            margin-top: 15px;
         }
 
         .formula-note strong {
             color: #764ba2;
-        }
-
-        .cgpa-value {
-            font-size: 4em;
-            font-weight: bold;
-            color: #667eea;
-            margin: 10px 0;
-        }
-
-        .credits-info {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .credit-item {
-            background: #f8f9fa;
-            padding: 15px 25px;
-            border-radius: 10px;
-            flex: 1;
-            min-width: 120px;
-        }
-
-        .credit-label {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 5px;
-        }
-
-        .credit-value {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #764ba2;
+            font-weight: 600;
         }
 
         .level-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
         }
 
         .tab {
-            flex: 1;
-            min-width: 150px;
-            padding: 15px 20px;
-            background: white;
-            border: none;
-            border-radius: 10px;
+            padding: 16px 20px;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.95em;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            color: #666;
         }
 
         .tab:hover {
+            background: #e9ecef;
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
 
         .tab.active {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
         .level-content {
             display: none;
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .level-content.active {
             display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #667eea;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+        }
+
+        .course-grid {
+            display: grid;
+            gap: 15px;
         }
 
         .course-item {
-            background: #f8f9fa;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 22px;
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: 1fr auto auto;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
             transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
         .course-item:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #667eea;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
             transform: translateX(5px);
         }
 
-        .course-info {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .course-name {
+        .course-info h4 {
             font-weight: 600;
-            font-size: 1.1em;
-            margin-bottom: 5px;
+            font-size: 1.05em;
+            margin-bottom: 6px;
             color: #333;
         }
 
         .course-code {
             color: #666;
             font-size: 0.9em;
+            font-family: 'Courier New', monospace;
         }
 
         .course-credits {
-            background: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
+            padding: 8px 18px;
+            border-radius: 25px;
             font-size: 0.9em;
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .grade-select {
-            padding: 10px 15px;
+            padding: 10px 16px;
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 1em;
             cursor: pointer;
             transition: all 0.3s ease;
             background: white;
-            min-width: 100px;
+            min-width: 140px;
+            font-weight: 500;
         }
 
         .grade-select:focus {
@@ -227,70 +299,86 @@
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
+        .grade-select:hover {
+            border-color: #667eea;
+        }
+
         .actions {
             margin-top: 30px;
             display: flex;
             gap: 15px;
-            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 30px;
+            padding: 16px 35px;
             border: none;
-            border-radius: 8px;
-            font-size: 1em;
+            border-radius: 12px;
+            font-size: 1.05em;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            flex: 1;
-            min-width: 150px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
         }
 
         .btn-secondary {
-            background: #f8f9fa;
+            background: white;
             color: #333;
             border: 2px solid #e0e0e0;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        .btn-secondary:hover {
+            background: #f8f9fa;
+            border-color: #667eea;
+            transform: translateY(-3px);
         }
 
-        .section-title {
-            font-size: 1.3em;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #667eea;
-            border-left: 4px solid #667eea;
-            padding-left: 15px;
+        @media (max-width: 1200px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .level-cgpa-cards {
+                grid-template-columns: repeat(2, 1fr);
+                display: grid;
+            }
         }
 
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
 
-            .cgpa-value {
-                font-size: 3em;
-            }
-
-            .course-item {
-                flex-direction: column;
-                align-items: flex-start;
+            .overall-value {
+                font-size: 4em;
             }
 
             .level-tabs {
-                flex-direction: column;
+                grid-template-columns: 1fr;
             }
 
-            .tab {
-                width: 100%;
+            .course-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .level-cgpa-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -298,72 +386,94 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>IIT Madras BS CGPA Calculator</h1>
-            <p>Data Science and Applications</p>
+            <h1>IIT Madras BSc CGPA Calculator</h1>
+            <p>Programming and Data Science</p>
         </div>
 
-        <div class="cgpa-display">
-            <div class="credit-label">Your CGPA</div>
-            <div class="cgpa-value" id="cgpaValue">0.00</div>
-            <div class="credits-info">
-                <div class="credit-item">
-                    <div class="credit-label">Total Credits</div>
-                    <div class="credit-value" id="totalCredits">0</div>
+        <div class="main-grid">
+            <div class="cgpa-sidebar">
+                <div class="overall-cgpa-card">
+                    <div class="overall-label">Overall CGPA</div>
+                    <div class="overall-value" id="overallCGPA">0.00</div>
+                    <div class="overall-percentage" id="overallPercentage">0.0%</div>
                 </div>
-                <div class="credit-item">
-                    <div class="credit-label">Completed</div>
-                    <div class="credit-value" id="completedCredits">0</div>
-                </div>
-                <div class="credit-item">
-                    <div class="credit-label">Grade Points</div>
-                    <div class="credit-value" id="gradePoints">0</div>
-                </div>
-                <div class="credit-item">
-                    <div class="credit-label">Percentage</div>
-                    <div class="credit-value" id="percentage">0%</div>
+
+                <div class="level-cgpa-cards">
+                    <div class="level-cgpa-card">
+                        <div class="level-cgpa-info">
+                            <h3>Foundation</h3>
+                            <div class="level-cgpa-credits" id="foundationCredits">0/32 Credits</div>
+                        </div>
+                        <div class="level-cgpa-value" id="foundationCGPA">0.00</div>
+                    </div>
+
+                    <div class="level-cgpa-card">
+                        <div class="level-cgpa-info">
+                            <h3>Diploma - Programming</h3>
+                            <div class="level-cgpa-credits" id="diplomaProgCredits">0/27 Credits</div>
+                        </div>
+                        <div class="level-cgpa-value" id="diplomaProgCGPA">0.00</div>
+                    </div>
+
+                    <div class="level-cgpa-card">
+                        <div class="level-cgpa-info">
+                            <h3>Diploma - Data Science</h3>
+                            <div class="level-cgpa-credits" id="diplomaDSCredits">0/27 Credits</div>
+                        </div>
+                        <div class="level-cgpa-value" id="diplomaDSCGPA">0.00</div>
+                    </div>
+
+                    <div class="level-cgpa-card">
+                        <div class="level-cgpa-info">
+                            <h3>BSc Degree</h3>
+                            <div class="level-cgpa-credits" id="bscCredits">0/28 Credits</div>
+                        </div>
+                        <div class="level-cgpa-value" id="bscCGPA">0.00</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="formula-box">
-                <div class="formula-title">📐 CGPA Calculation Formula</div>
-                <div class="formula">CGPA = Σ(Cᵢ × GP) / ΣCᵢ</div>
-                <div class="formula-note">
-                    <strong>Where:</strong><br>
-                    • Cᵢ = Credit of the course<br>
-                    • GP = Grade Point for that course<br>
-                    • Σ = Sum over all registered courses successfully cleared (S to E only)<br>
-                    • <strong>Note:</strong> Grades P, F, U, W, I are NOT included in CGPA calculation<br>
-                    • <strong>Percentage = CGPA × 10</strong>
+            <div class="content-area">
+                <div class="formula-box">
+                    <div class="formula-title">📐 CGPA Calculation Formula</div>
+                    <div class="formula">CGPA = Σ(Cᵢ × GP) / ΣCᵢ</div>
+                    <div class="formula-note">
+                        <strong>Where:</strong><br>
+                        • Cᵢ = Credit of the course<br>
+                        • GP = Grade Point for that course<br>
+                        • Σ = Sum over all registered courses successfully cleared (S to E only)<br>
+                        • <strong>Note:</strong> Grades P, F, U, W, I are NOT included in CGPA calculation<br>
+                        • <strong>Percentage = CGPA × 10</strong>
+                    </div>
+                </div>
+
+                <div class="level-tabs">
+                    <button class="tab active" onclick="switchTab('foundation')">Foundation</button>
+                    <button class="tab" onclick="switchTab('diploma-prog')">Diploma - Prog</button>
+                    <button class="tab" onclick="switchTab('diploma-ds')">Diploma - DS</button>
+                    <button class="tab" onclick="switchTab('degree')">Degree</button>
+                </div>
+
+                <div id="foundation" class="level-content active">
+                    <div class="section-title">Foundation Level - 32 Credits</div>
+                    <div class="course-grid" id="foundation-courses"></div>
+                </div>
+
+                <div id="diploma-prog" class="level-content">
+                    <div class="section-title">Diploma in Programming - 27 Credits</div>
+                    <div class="course-grid" id="diploma-prog-courses"></div>
+                </div>
+
+                <div id="diploma-ds" class="level-content">
+                    <div class="section-title">Diploma in Data Science - 27 Credits</div>
+                    <div class="course-grid" id="diploma-ds-courses"></div>
+                </div>
+
+                <div id="degree" class="level-content">
+                    <div class="section-title">BSc Degree Level - Core & Electives</div>
+                    <div class="course-grid" id="degree-courses"></div>
                 </div>
             </div>
-        </div>
-
-        <div class="level-tabs">
-            <button class="tab active" onclick="switchTab('foundation')">Foundation (32)</button>
-            <button class="tab" onclick="switchTab('diploma-prog')">Diploma - Programming (27)</button>
-            <button class="tab" onclick="switchTab('diploma-ds')">Diploma - Data Science (27)</button>
-            <button class="tab" onclick="switchTab('degree')">Degree Level (28)</button>
-        </div>
-
-        <div id="foundation" class="level-content active">
-            <div class="section-title">Foundation Level - 32 Credits</div>
-        </div>
-
-        <div id="diploma-prog" class="level-content">
-            <div class="section-title">Diploma in Programming - 27 Credits</div>
-        </div>
-
-        <div id="diploma-ds" class="level-content">
-            <div class="section-title">Diploma in Data Science - 27 Credits</div>
-        </div>
-
-        <div id="degree" class="level-content">
-            <div class="section-title">Degree Level - Core & Elective Courses</div>
-        </div>
-
-        <div class="actions">
-            <button class="btn btn-primary" onclick="calculateCGPA()">Calculate CGPA</button>
-            <button class="btn btn-secondary" onclick="resetAll()">Reset All</button>
         </div>
     </div>
 
@@ -416,24 +526,22 @@
             "S": 10, "A": 9, "B": 8, "C": 7, "D": 6, "E": 4, "U": 0, "P": 0, "F": 0, "W": 0, "I": 0, "": 0
         };
 
-        // Grades that should NOT be included in CGPA calculation
         const excludeFromCGPA = ["P", "F", "U", "W", "I"];
 
         function initializeCourses() {
             Object.keys(courses).forEach(level => {
-                const container = document.getElementById(level);
-                const contentDiv = container.querySelector('.section-title').parentElement;
+                const container = document.getElementById(`${level}-courses`);
                 
                 courses[level].forEach((course, index) => {
                     const courseDiv = document.createElement('div');
                     courseDiv.className = 'course-item';
                     courseDiv.innerHTML = `
                         <div class="course-info">
-                            <div class="course-name">${course.name}</div>
+                            <h4>${course.name}</h4>
                             <div class="course-code">${course.code}</div>
                         </div>
                         <div class="course-credits">${course.credits} Credits</div>
-                        <select class="grade-select" id="${level}-${index}">
+                        <select class="grade-select" id="${level}-${index}" onchange="calculateCGPA()">
                             <option value="">Select Grade</option>
                             <option value="S">S (10)</option>
                             <option value="A">A (9)</option>
@@ -448,7 +556,7 @@
                             <option value="I">I - Incomplete</option>
                         </select>
                     `;
-                    contentDiv.appendChild(courseDiv);
+                    container.appendChild(courseDiv);
                 });
             });
         }
@@ -461,45 +569,96 @@
             document.getElementById(levelId).classList.add('active');
         }
 
-        function calculateCGPA() {
+        function calculateLevelCGPA(level) {
             let totalCredits = 0;
             let totalGradePoints = 0;
             let completedCredits = 0;
+
+            courses[level].forEach((course, index) => {
+                const select = document.getElementById(`${level}-${index}`);
+                const grade = select.value;
+                
+                if (grade && !excludeFromCGPA.includes(grade)) {
+                    completedCredits += course.credits;
+                    totalGradePoints += gradePoints[grade] * course.credits;
+                }
+                
+                if (grade) {
+                    totalCredits += course.credits;
+                }
+            });
+
+            const cgpa = completedCredits > 0 ? (totalGradePoints / completedCredits).toFixed(2) : 0;
+            return { cgpa, completedCredits, totalCredits };
+        }
+
+        function calculateCGPA() {
+            // Calculate individual level CGPAs
+            const foundationData = calculateLevelCGPA('foundation');
+            const diplomaProgData = calculateLevelCGPA('diploma-prog');
+            const diplomaDSData = calculateLevelCGPA('diploma-ds');
+            const degreeData = calculateLevelCGPA('degree');
+
+            // Update level CGPA displays
+            document.getElementById('foundationCGPA').textContent = foundationData.cgpa;
+            document.getElementById('foundationCredits').textContent = 
+                `${foundationData.completedCredits}/32 Credits`;
+
+            document.getElementById('diplomaProgCGPA').textContent = diplomaProgData.cgpa;
+            document.getElementById('diplomaProgCredits').textContent = 
+                `${diplomaProgData.completedCredits}/27 Credits`;
+
+            document.getElementById('diplomaDSCGPA').textContent = diplomaDSData.cgpa;
+            document.getElementById('diplomaDSCredits').textContent = 
+                `${diplomaDSData.completedCredits}/27 Credits`;
+
+            document.getElementById('bscCGPA').textContent = degreeData.cgpa;
+            document.getElementById('bscCredits').textContent = 
+                `${degreeData.completedCredits}/28 Credits`;
+
+            // Calculate overall CGPA
+            let overallCompletedCredits = 0;
+            let overallGradePoints = 0;
 
             Object.keys(courses).forEach(level => {
                 courses[level].forEach((course, index) => {
                     const select = document.getElementById(`${level}-${index}`);
                     const grade = select.value;
                     
-                    // Only count grades S to E for CGPA calculation (excluding P, F, U, W, I)
                     if (grade && !excludeFromCGPA.includes(grade)) {
-                        completedCredits += course.credits;
-                        totalGradePoints += gradePoints[grade] * course.credits;
-                    }
-                    
-                    // Count all selected grades for total credits
-                    if (grade) {
-                        totalCredits += course.credits;
+                        overallCompletedCredits += course.credits;
+                        overallGradePoints += gradePoints[grade] * course.credits;
                     }
                 });
             });
 
-            const cgpa = completedCredits > 0 ? (totalGradePoints / completedCredits).toFixed(2) : 0;
-            const percentage = (cgpa * 10).toFixed(1);
+            const overallCGPA = overallCompletedCredits > 0 ? 
+                (overallGradePoints / overallCompletedCredits).toFixed(2) : 0;
+            const percentage = (overallCGPA * 10).toFixed(1);
 
-            document.getElementById('cgpaValue').textContent = cgpa;
-            document.getElementById('totalCredits').textContent = totalCredits;
-            document.getElementById('completedCredits').textContent = completedCredits;
-            document.getElementById('gradePoints').textContent = totalGradePoints;
-            document.getElementById('percentage').textContent = percentage + '%';
+            document.getElementById('overallCGPA').textContent = overallCGPA;
+            document.getElementById('overallPercentage').textContent = percentage + '%';
         }
 
         function resetAll() {
-            if (confirm('Are you sure you want to reset all grades?')) {
+            const confirmed = confirm('Are you sure you want to reset all grades?');
+            if (confirmed) {
+                // Reset all grade selections
                 document.querySelectorAll('.grade-select').forEach(select => {
                     select.value = '';
                 });
-                calculateCGPA();
+                
+                // Reset all displays
+                document.getElementById('overallCGPA').textContent = '0.00';
+                document.getElementById('overallPercentage').textContent = '0.0%';
+                document.getElementById('foundationCGPA').textContent = '0.00';
+                document.getElementById('foundationCredits').textContent = '0/32 Credits';
+                document.getElementById('diplomaProgCGPA').textContent = '0.00';
+                document.getElementById('diplomaProgCredits').textContent = '0/27 Credits';
+                document.getElementById('diplomaDSCGPA').textContent = '0.00';
+                document.getElementById('diplomaDSCredits').textContent = '0/27 Credits';
+                document.getElementById('bscCGPA').textContent = '0.00';
+                document.getElementById('bscCredits').textContent = '0/28 Credits';
             }
         }
 
